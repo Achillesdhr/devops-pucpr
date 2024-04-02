@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+stages:
+  - build
+  - test
+  - deploy
+
+jobs:
+  build-job:   
+    stage: build
+    script:
+      - echo "Building the application"
+
+deploy-job:
+    stage: deploy
+    script:
+      - echo "Deploying the application"
+
+     
