@@ -14,13 +14,14 @@ stages:
 
 jobs:
   build-job:   
-    stage: build
-    script:
-      - echo "Building the application"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-deploy-job:
-    stage: deploy
-    script:
-      - echo "Deploying the application"
+    deploy-job:
+        stage: deploy
+        script:
+          - echo "Deploying the application"
 
      
