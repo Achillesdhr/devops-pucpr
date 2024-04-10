@@ -1,27 +1,22 @@
-name: CI
+image: python
 
-on:
-  push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - master
 stages:
   - build
   - test
   - deploy
 
-jobs:
-  build-job:   
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+build-job:
+  stage: build
+  script:
+    - python3 -V
 
-    deploy-job:
-        stage: deploy
-        script:
-          - echo "Deploying the application"
+  test-count:
+    stage: test
+    script:
+      - python3 count.py
 
+  deploy:
+    stage: deploy
+    script:
+      - echo "Hello Wolrd!"
      
