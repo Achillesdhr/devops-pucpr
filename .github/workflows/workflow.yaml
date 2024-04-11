@@ -7,28 +7,29 @@ on:
   pull_request:
     branches:
       - master
-
   workflow_dispatch:
 
-  jobs:
-    build-job:
-      runs-on: ubuntu-latest
+jobs:
+  build-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v3
+      - name: Verificar a versão do Python
+        run: python3 --version
 
-      steps:
-        - uses: actions/checkout@v3
-        - run: python3 -V
+  test-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v3
+      - name: Executar o script de contagem em Python
+        run: python3 count.py
 
-      test-job:
-        runs-on: ubuntu-latest
-
-        steps:
-          - uses: actions/checkout@v3
-          - run: python3 count.py
-        
-      
-      deploy-job:
-        runs-on: ubuntu-latest
-
-        steps:
-          - uses: actions/checkout@v3
-          - run: echo "Finalizado"
+  deploy-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v3
+      - name: Finalizar deploy
+        run: echo "Finalizado"
